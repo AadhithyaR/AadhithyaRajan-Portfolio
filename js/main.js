@@ -27,18 +27,27 @@
         }
     });
 
+// Typed Initiate
+// Typed Initiate
+if ($('.typed-text-output').length == 1) {
+    var typed_strings = $('.typed-text').text().split(', ');
+    var typed = new Typed('.typed-text-output', {
+        strings: typed_strings,
+        typeSpeed: 100,
+        backSpeed: 20,
+        smartBackspace: false,
+        loop: true,
+        onComplete: function(self) {
+            // Remove the last typed string
+            var index = typed_strings.indexOf(self.strings[self.strings.length - 1]);
+            typed_strings.splice(index, 1);
+            // Reset Typed with updated strings
+            self.strings = typed_strings;
+            self.reset();
+        }
+    });
+}
 
-    // Typed Initiate
-    if ($('.typed-text-output').length == 1) {
-        var typed_strings = $('.typed-text').text();
-        var typed = new Typed('.typed-text-output', {
-            strings: typed_strings.split(', '),
-            typeSpeed: 100,
-            backSpeed: 20,
-            smartBackspace: false,
-            loop: true
-        });
-    }
 
 
 
